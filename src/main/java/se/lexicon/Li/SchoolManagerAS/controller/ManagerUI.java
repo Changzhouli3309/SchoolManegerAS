@@ -141,8 +141,8 @@ public class ManagerUI {
 			pl("No Existing Student.\n");
 			return null;
 		}
-		pl("---Searching Student by:\n1-ID, 2-Name, 3-Email, 4-Course, 5-Show all (0-Cansel)");
-		switch (getIntFromLimit(5, 0)) {
+		pl("---Searching Student by:\n1-ID, 2-Name, 3-Email, 4-Show all (0-Cansel)");
+		switch (getIntFromLimit(4, 0)) {
 		case 1:
 			pt("ID: ");
 			return nullCheakSt(sMS.findStudentById(getInt()), "ID");
@@ -153,8 +153,6 @@ public class ManagerUI {
 			pt("Email:");
 			return nullCheakSt(sMS.findStudentByEmail(getNoEmptyString()), "Email");
 		case 4:
-			return pickStInList(searchCourse().getStudentList(), "Course");
-		case 5:
 			return pickStInList(sMS.findAllStudent(), "All");
 		default:
 			return null;
@@ -183,7 +181,7 @@ public class ManagerUI {
 		}
 		pl("---Student-List---");
 		for (int i = 0; i < list.size(); i++) {
-			pl((i + 1) + "-ID: " + addZero(list.get(i).getID(), 2) + ", " + list.get(i).getName());
+			pl((i + 1) + "-ID: " + addZero(list.get(i).getID(), 2) + ", Name: " + list.get(i).getName());
 		}
 		pl("------------------");
 		pl("Enter Number to pick (0-Cansel)");
@@ -316,7 +314,7 @@ public class ManagerUI {
 		}
 		pl("---Course-List---");
 		for (int i = 0; i < list.size(); i++) {
-			pl((i + 1) + "-ID: " + addZero(list.get(i).getID(), 2) + ", " + list.get(i).getCourseName());
+			pl((i + 1) + "-ID: " + addZero(list.get(i).getID(), 2) + ", Name: " + list.get(i).getCourseName());
 		}
 		pl("------------------");
 		pl("Enter Number to pick (0-Cansel)");

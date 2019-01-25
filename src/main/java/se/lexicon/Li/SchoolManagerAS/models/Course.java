@@ -21,7 +21,7 @@ public class Course {
 			re += "---Student-List---\n";
 			for (int i = 0; i < studentList.size(); i++) {
 				re += i + "-ID: " + addZero(studentList.get(i).getID(), 2) + ", " 
-			+ studentList.get(i).getName() + "\n";
+			+ "Name: "+studentList.get(i).getName() + "\n";
 			}
 			re += "------------------";
 		} else {
