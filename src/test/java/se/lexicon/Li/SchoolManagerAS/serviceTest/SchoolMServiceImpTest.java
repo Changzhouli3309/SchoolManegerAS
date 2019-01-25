@@ -79,8 +79,10 @@ public class SchoolMServiceImpTest {
 	@Test
 	public void test_check_list_in_course_after_remove_studnet_from_course_list() {
 		underTest.removeStudentFromCourse(testCourse1, testStudent1, testStudent2);
+		//check out testStudent2 still in testCourse2.
+		assertTrue(testCourse2.getStudentList().contains(testStudent2));
+		
 		underTest.removeStudentFromCourse(testCourse2, testStudent2);
-
 		assertEquals(0, testCourse1.getStudentList().size());
 		assertEquals(1, testCourse2.getStudentList().size());
 		assertTrue(testCourse2.getStudentList().contains(underTest.findAllStudent().get(2)));

@@ -36,13 +36,13 @@ public class UserInput {
 	public static LocalDate getDate() {
 		int year = 0, month = 0, dayOfMonth = 0;
 
-		System.out.println("Year: ");
+		System.out.print("Year: ");
 		year = getIntFromLimit(Year.MAX_VALUE, Year.MIN_VALUE);
 
-		System.out.println("Month: ");
+		System.out.print("Month: ");
 		month = getIntFromLimit(12, 1);
 
-		System.out.println("Day: ");
+		System.out.print("Day: ");
 		dayOfMonth = getIntFromLimit(31, 1);
 
 		return LocalDate.of(year, month, dayOfMonth);

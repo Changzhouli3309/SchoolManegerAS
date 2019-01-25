@@ -9,31 +9,31 @@ public class StudentDaoList implements StudentDao {
 	private static List<Student> students = new ArrayList<>();
 
 	@Override
-	public boolean addStudent(Student student) {
-		if (student == null) {
+	public boolean addStudent(Student s) {
+		if (s == null) {
 			return false;
 		}
 
-		for (Student s : students) {
-			if (s.getEmail().equals(student.getEmail())) {
+		for (Student sFL : students) {
+			if (sFL.getEmail().equals(s.getEmail())) {
 				System.out.println("Email is already used.");
 				return false;
 			}
 		}
-		if (students.contains(student)) {
+		if (students.contains(s)) {
 			return false;
 		}
-		return students.add(student);
+		return students.add(s);
 	}
 
 	@Override
-	public boolean removeStudent(Student student) {
-		if (student == null) {
+	public boolean removeStudent(Student s) {
+		if (s == null) {
 			return false;
 		}
 
-		if (students.contains(student)) {
-			return students.remove(student);
+		if (students.contains(s)) {
+			return students.remove(s);
 		}
 		return false;
 	}
