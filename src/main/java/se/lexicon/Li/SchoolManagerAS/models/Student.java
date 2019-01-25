@@ -1,5 +1,7 @@
 package se.lexicon.Li.SchoolManagerAS.models;
 
+import static se.lexicon.Li.SchoolManagerAS.util.UtilNumber.addZero;
+
 public class Student {
 
 	private static int sequencer = 0;
@@ -7,6 +9,12 @@ public class Student {
 	private String name;
 	private String email;
 	private String address;
+
+	@Override
+	public String toString() {
+		return "Student, ID: " + addZero(ID, 2) + ", Name:" + name 
+				+ "\nEmail: " + email + ", Address=" + address;
+	}
 
 	/**
 	 * 

@@ -10,21 +10,15 @@ import java.util.ArrayList;
 
 public class CourseDaoList implements CourseDao {
 
-	private static List<Course> courses=new ArrayList<>();
+	private static List<Course> courses = new ArrayList<>();
 
 	@Override
 	public boolean addCourse(Course course) {
-		if(course == null) {
+		if (course == null) {
 			return false;
 		}
-		
-		for (Course c:courses) {
-			if (c.getCourseName().equals(course.getCourseName())) {
-				System.out.println("Course name is used.");
-				return false;
-			}
-		}
-		if(courses.contains(course)) {
+
+		if (courses.contains(course)) {
 			return false;
 		}
 		return courses.add(course);
@@ -83,6 +77,9 @@ public class CourseDaoList implements CourseDao {
 
 	@Override
 	public List<Course> findByStudent(Student student) {
+		if (student == null) {
+			return new ArrayList<>();
+		}
 		List<Course> re = new ArrayList<>();
 
 		for (Course c : courses) {
@@ -92,11 +89,10 @@ public class CourseDaoList implements CourseDao {
 		}
 		return re;
 	}
-	
+
 	@Override
 	public void removeAll() {
 		courses.clear();
 	}
-
 
 }

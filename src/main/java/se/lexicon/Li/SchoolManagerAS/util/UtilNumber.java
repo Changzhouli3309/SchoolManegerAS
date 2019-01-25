@@ -46,7 +46,7 @@ public class UtilNumber {
 	 * Add 0 before the number if it is too short
 	 * 
 	 * @param n
-	 * @param max
+	 * @param di
 	 * @return
 	 */
 	public static String addZero(int n, int di) {

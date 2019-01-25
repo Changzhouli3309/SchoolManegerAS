@@ -67,13 +67,13 @@ public class StudentDaoListTest {
 		assertTrue(result.stream().allMatch(student -> student.getName().contains(param)));
 	}
 
-	@Test 
+	@Test
 	public void test_find_student_by_email() {
 		assertEquals(testStudent, underTest.findByEmail(studentEmail));
-		
+
 		assertNull(underTest.findByEmail("123@email"));
 	}
-	
+
 	@Test
 	public void test_delete_student() {
 		assertFalse(underTest.removeStudent(null));

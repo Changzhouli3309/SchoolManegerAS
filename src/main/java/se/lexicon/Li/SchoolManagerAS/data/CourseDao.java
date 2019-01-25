@@ -1,9 +1,5 @@
 package se.lexicon.Li.SchoolManagerAS.data;
 
-/**
- * @author Li
- * Need more methods?
- */
 import java.util.List;
 
 import se.lexicon.Li.SchoolManagerAS.models.Course;
@@ -24,7 +20,7 @@ public interface CourseDao {
 	List<Course> findByDate(LocalDate date);
 
 	List<Course> findAll();
-	
+
 	List<Course> findByStudent(Student student);
 
 	void removeAll();

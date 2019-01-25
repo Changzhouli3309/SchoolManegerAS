@@ -8,6 +8,8 @@ import se.lexicon.Li.SchoolManagerAS.models.Student;
 import se.lexicon.Li.SchoolManagerAS.util.NullChecker;
 import se.lexicon.Li.SchoolManagerAS.data.*;
 
+import static se.lexicon.Li.SchoolManagerAS.util.UtilNumber.addZero;
+
 public class SchoolMServiceImp implements SchoolMService {
 
 	private static CourseDao courseDao = new CourseDaoList();
@@ -20,6 +22,8 @@ public class SchoolMServiceImp implements SchoolMService {
 
 		Student newStudent = new Student(name, email, address);
 		if (addStudent(newStudent)) {
+			System.out.println(
+					"Student, ID: " + addZero(newStudent.getID(), 2) + ", " + newStudent.getName() + " is added.");
 			return newStudent;
 		} else {
 			System.out.println("Could not create Student.");
@@ -35,6 +39,8 @@ public class SchoolMServiceImp implements SchoolMService {
 
 		Course newCourse = new Course(courseName, startDate, weekDuration);
 		if (addCourse(newCourse)) {
+			System.out.println(
+					"Course, ID: " + addZero(newCourse.getID(), 2) + ", " + newCourse.getCourseName() + " is added.");
 			return newCourse;
 		} else {
 			System.out.println("Could not create Course.");
@@ -42,12 +48,12 @@ public class SchoolMServiceImp implements SchoolMService {
 		}
 
 	}
-	
+
 	@Override
 	public boolean addStudent(Student student) {
 		return studentDao.addStudent(student);
 	}
-	
+
 	@Override
 	public boolean addCourse(Course course) {
 		return courseDao.addCourse(course);
@@ -63,17 +69,37 @@ public class SchoolMServiceImp implements SchoolMService {
 	}
 
 	@Override
-	public boolean addStudentToCourse(Course course, Student student) {
-		if (NullChecker.nullCheck(student, course))
-			throw new NullPointerException("NullPointerException in " + this.getClass());
+	public void addStudentToCourse(Course course, Student student) {
+		if (!NullChecker.nullCheck(course, student)) {
+			if (!course.getStudentList().contains(student)) {
+				course.getStudentList().add(student);
+				System.out.println("Added Student " + student.getName() + " to " + course.getCourseName());
+			} else {
+				System.out.println("Could not add Student " + student.getName() + " to \n" + "Course "
+						+ course.getCourseName() + ", duplicate found.");
+			}
+		}
+	}
 
-		if (!course.getStudentList().contains(student)) {
-			course.getStudentList().add(student);
-			return true;
-		} else {
-			System.out.println("Could not add Student " + student.getName() + " to \n"
-					+ "Course "+course.getCourseName()+", duplicate found.");
-			return false;
+	@Override
+	public void removeStudentFromCourse(Course course, Student... students) {
+		if (NullChecker.nullCheck(course, students))
+			throw new NullPointerException("NullPointerException in " + this.getClass());
+		for (Student s : students) {
+			removeStudentFromCourse(course, s);
+		}
+	}
+
+	@Override
+	public void removeStudentFromCourse(Course course, Student student) {
+		if (!NullChecker.nullCheck(course, student)) {
+			if (course.getStudentList().contains(student)) {
+				course.getStudentList().remove(student);
+				System.out.println("Removed Student " + student.getName() + " from " + course.getCourseName());
+			} else {
+				System.out.println("Could not remove Student " + student.getName() + " to \n" + "Course "
+						+ course.getCourseName() + ", No matching found.");
+			}
 		}
 	}
 

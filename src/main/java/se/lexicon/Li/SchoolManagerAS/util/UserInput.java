@@ -1,6 +1,8 @@
 package se.lexicon.Li.SchoolManagerAS.util;
 
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.Year;
 
 public class UserInput {
 
@@ -8,6 +10,42 @@ public class UserInput {
 
 	public static String getString() {
 		return scan.nextLine();
+	}
+
+	/**
+	 * Get String which is not just empty space
+	 * 
+	 * @return valid String
+	 */
+	public static String getNoEmptyString() {
+		while (true) {
+			String re = getString().trim();
+			if (!re.equals("")) {
+				return re;
+			} else {
+				System.out.println("Not a valid enter.");
+			}
+		}
+	}
+
+	/**
+	 * Get a valid Date
+	 * 
+	 * @return LocalDate
+	 */
+	public static LocalDate getDate() {
+		int year = 0, month = 0, dayOfMonth = 0;
+
+		System.out.println("Year: ");
+		year = getIntFromLimit(Year.MAX_VALUE, Year.MIN_VALUE);
+
+		System.out.println("Month: ");
+		month = getIntFromLimit(12, 1);
+
+		System.out.println("Day: ");
+		dayOfMonth = getIntFromLimit(31, 1);
+
+		return LocalDate.of(year, month, dayOfMonth);
 	}
 
 	/**
@@ -49,6 +87,7 @@ public class UserInput {
 	 */
 	public static boolean yesOrNo(String question) {
 		System.out.println(question + "(y/n)");
+		int tryN = 0;
 		while (true) {
 			String check = getString().toLowerCase();
 			switch (check) {
@@ -57,7 +96,12 @@ public class UserInput {
 			case "n":
 				return false;
 			default:
-				System.out.println("Not a valid enter.(y/n)");
+				tryN++;
+				if (tryN % 5 == 0) {
+					System.out.println(question + "(y/n)");
+				} else {
+					System.out.println("Not a valid enter.(y/n)");
+				}
 			}
 		}
 	}

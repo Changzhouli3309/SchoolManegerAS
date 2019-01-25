@@ -20,20 +20,20 @@ public class CourseDaoListTest {
 	private static Student testStudent;
 	private static LocalDate startDate;
 	private static Course testCourse;
-	private static int courseID; 
+	private static int courseID;
 
 	@Before
 	public void init() {
 		testStudent = new Student("Test1", "n1@email", "P1");
-		startDate=LocalDate.now();
-		testCourse= new Course("T_course", LocalDate.now(), 4);
-		courseID=testCourse.getID();
+		startDate = LocalDate.now();
+		testCourse = new Course("T_course", LocalDate.now(), 4);
+		courseID = testCourse.getID();
 		testCourse.getStudentList().add(testStudent);
-		
+
 		underTest.addCourse(testCourse);
 		underTest.addCourse(new Course("T_course2", LocalDate.now(), 3));
-		
-		underTest.findAll().get(1).getStudentList().add(new Student("Test2","n2@email","P2"));
+
+		underTest.findAll().get(1).getStudentList().add(new Student("Test2", "n2@email", "P2"));
 	}
 
 	@After
@@ -74,14 +74,14 @@ public class CourseDaoListTest {
 		assertTrue(result.stream().allMatch(student -> student.getCourseName().contains(param)));
 	}
 
-	@Test 
+	@Test
 	public void test_find_course_by_start_date() {
 		List<Course> result = underTest.findByDate(startDate);
 		for (Course s : result) {
 			assertTrue(s.getStartDate().equals(startDate));
 		}
 	}
-	
+
 	@Test
 	public void test_delete_course() {
 		assertFalse(underTest.removeCourse(null));
@@ -91,14 +91,15 @@ public class CourseDaoListTest {
 		assertFalse(underTest.removeCourse(new Course("T_course4", LocalDate.now(), 1)));
 
 	}
-	
-	@Test 
+
+	@Test
 	public void test_find_course_by_student() {
 		List<Course> result = underTest.findByStudent(testStudent);
 		for (Course s : result) {
 			assertTrue(s.getStudentList().contains(testStudent));
 		}
-		
+
+		assertEquals(0, underTest.findByStudent(null).size(), 0);
 	}
-	
+
 }

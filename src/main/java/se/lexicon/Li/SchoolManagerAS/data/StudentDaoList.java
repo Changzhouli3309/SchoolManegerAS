@@ -10,17 +10,17 @@ public class StudentDaoList implements StudentDao {
 
 	@Override
 	public boolean addStudent(Student student) {
-		if(student == null) {
+		if (student == null) {
 			return false;
 		}
-		
-		for (Student s:students) {
+
+		for (Student s : students) {
 			if (s.getEmail().equals(student.getEmail())) {
 				System.out.println("Email is already used.");
 				return false;
 			}
 		}
-		if(students.contains(student)) {
+		if (students.contains(student)) {
 			return false;
 		}
 		return students.add(student);
@@ -75,7 +75,7 @@ public class StudentDaoList implements StudentDao {
 	public List<Student> findAll() {
 		return students;
 	}
-	
+
 	@Override
 	public void removeAll() {
 		students.clear();
