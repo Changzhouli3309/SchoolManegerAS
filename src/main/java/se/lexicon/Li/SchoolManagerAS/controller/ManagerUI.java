@@ -376,6 +376,7 @@ public class ManagerUI {
 			case 3:
 				pl("New Duration(week): ");
 				c.setWeekDuration(getInt());
+				break;
 			default:
 				changing = false;
 			}
