@@ -3,6 +3,7 @@ package se.lexicon.Li.SchoolManagerAS.util;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.Year;
+import java.time.format.DateTimeParseException;
 
 public class UserInput {
 
@@ -34,18 +35,15 @@ public class UserInput {
 	 * @return LocalDate
 	 */
 	public static LocalDate getDate() {
-		int year = 0, month = 0, dayOfMonth = 0;
-
-		System.out.print("Year: ");
-		year = getIntFromLimit(Year.MAX_VALUE, Year.MIN_VALUE);
-
-		System.out.print("Month: ");
-		month = getIntFromLimit(12, 1);
-
-		System.out.print("Day: ");
-		dayOfMonth = getIntFromLimit(31, 1);
-
-		return LocalDate.of(year, month, dayOfMonth);
+		while (true) {
+			System.out.println("Date: (YYYY-MM-DD) ");
+			try {
+				return LocalDate.parse(getNoEmptyString());
+			} catch (DateTimeParseException e) {
+				System.out.println("Not valid enter.(date)");
+			}
+			
+		}
 	}
 
 	/**

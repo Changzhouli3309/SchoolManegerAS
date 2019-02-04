@@ -13,7 +13,7 @@ public class UtilNumber {
 	 * @param min lowest number (include)
 	 * @return a random number
 	 */
-	public static int randomInt(int max, int min) {
+	public static int getRandomInt(int max, int min) {
 		return ran.nextInt(max - min) + min;
 	}
 
@@ -24,7 +24,7 @@ public class UtilNumber {
 	 * @param min lowest number (include)
 	 * @return a random number
 	 */
-	public static double randomDouble(double max, double min) {
+	public static double getRandomDouble(double max, double min) {
 		return ran.nextDouble() * (max - min) + min;
 	}
 

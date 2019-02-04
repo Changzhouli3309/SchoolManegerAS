@@ -35,7 +35,7 @@ public class Course {
 	/**
 	 * 
 	 * @param courseName
-	 * @param startDate    :LocalDate.now()
+	 * @param startDate    
 	 * @param weekDuration
 	 */
 	public Course(String courseName, LocalDate startDate, int weekDuration) {

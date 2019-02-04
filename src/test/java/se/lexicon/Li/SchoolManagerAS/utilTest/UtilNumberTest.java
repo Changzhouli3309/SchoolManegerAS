@@ -15,8 +15,8 @@ public class UtilNumberTest {
 		double maxDou = 9.5, minDou = 1.9;
 
 		for (int i = 0; i < TEST_TIMES; i++) {
-			int testInt = randomInt(maxInt, minInt);
-			double testDou = randomDouble(maxDou, minDou);
+			int testInt = getRandomInt(maxInt, minInt);
+			double testDou = getRandomDouble(maxDou, minDou);
 			Assert.assertTrue(maxInt >= testInt && minInt <= testInt);
 			Assert.assertTrue(maxDou >= testDou && minInt <= testDou);
 		}
